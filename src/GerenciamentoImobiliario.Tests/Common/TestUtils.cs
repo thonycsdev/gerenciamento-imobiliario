@@ -11,7 +11,7 @@ namespace GerenciamentoImobiliario.Tests.Common
         public readonly Faker _faker;
         public TestUtils()
         {
-            _fixture = new Fixture(); 
+            _fixture = new Fixture();
             _faker = new Faker("pt_BR");
         }
         public Corretor CreateValidCorretor()
@@ -25,13 +25,19 @@ namespace GerenciamentoImobiliario.Tests.Common
             var inquilino = new Inquilino(_faker.Person.FullName, _faker.Person.Random.String());
             return inquilino;
         }
-        public Proprietario CreateValidProprietario(){
-            var prop = new Proprietario(_faker.Person.FullName);
+        public Proprietario CreateValidProprietario()
+        {
+            var prop = new Proprietario(_faker.Person.FullName, _faker.Person.Random.String());
             return prop;
         }
-        public Imovel CreateValidImovel(){
-            var imo = new Imovel(_faker.Company.CompanyName(),CreateValidProprietario());
+        public Imovel CreateValidImovel()
+        {
+            var imo = new Imovel(_faker.Company.CompanyName(), CreateValidProprietario());
             return imo;
+        }
+        public void CreateValidLocation()
+        {
+
         }
     }
 
