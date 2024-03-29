@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciamentoImobiliario.Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciamentoImobiliario.Tests", "src\GerenciamentoImobiliario.Tests\GerenciamentoImobiliario.Tests.csproj", "{CA338EBE-EBB3-4E2C-8312-E431D6D42C07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciamentoImobiliario.Application", "src\GerenciamentoImobiliario.Application\GerenciamentoImobiliario.Application.csproj", "{5753F30A-4081-432C-9845-43C236D9CD85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciamentoImobiliario.Data.Infra", "src\GerenciamentoImobiliario.Data.Infra\GerenciamentoImobiliario.Data.Infra.csproj", "{578D68D2-BC75-410F-9754-5BB5C86571DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,10 +36,20 @@ Global
 		{CA338EBE-EBB3-4E2C-8312-E431D6D42C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA338EBE-EBB3-4E2C-8312-E431D6D42C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA338EBE-EBB3-4E2C-8312-E431D6D42C07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5753F30A-4081-432C-9845-43C236D9CD85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5753F30A-4081-432C-9845-43C236D9CD85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5753F30A-4081-432C-9845-43C236D9CD85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5753F30A-4081-432C-9845-43C236D9CD85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{578D68D2-BC75-410F-9754-5BB5C86571DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{578D68D2-BC75-410F-9754-5BB5C86571DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{578D68D2-BC75-410F-9754-5BB5C86571DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{578D68D2-BC75-410F-9754-5BB5C86571DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{12AC5861-879B-44DF-BCB5-0E3A9CF9147D} = {418BEAEF-D228-41A1-9673-F8150990F9A8}
 		{2C149AE4-AC2C-4F28-A7C8-2DFAC680D8CB} = {418BEAEF-D228-41A1-9673-F8150990F9A8}
 		{CA338EBE-EBB3-4E2C-8312-E431D6D42C07} = {418BEAEF-D228-41A1-9673-F8150990F9A8}
+		{5753F30A-4081-432C-9845-43C236D9CD85} = {418BEAEF-D228-41A1-9673-F8150990F9A8}
+		{578D68D2-BC75-410F-9754-5BB5C86571DF} = {418BEAEF-D228-41A1-9673-F8150990F9A8}
 	EndGlobalSection
 EndGlobal

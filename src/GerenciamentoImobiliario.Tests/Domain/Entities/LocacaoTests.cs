@@ -82,5 +82,18 @@ namespace GerenciamentoImobiliario.Tests.Domain.Entities
             action.Should().Throw<EntityException>().WithMessage("Data de locacao esta invalida");
 
         }
+        [Fact]
+        public void GiveSomeDependencyAsNullShouldThrowAnError()
+        {
+            
+            var imovel = _utils.CreateValidImovel();
+            var inquilino = _utils.CreateValidInquilino();
+            Corretor? corretor = null;
+            var alugadoAte = DateTime.Now; 
+
+            Action action = () => new Locacao(imovel, inquilino, corretor, alugadoAte);
+
+            action.Should().Throw<EntityException>().WithMessage("Valide as Informacoes das entidades fornecidas");
+        }
     }
 }

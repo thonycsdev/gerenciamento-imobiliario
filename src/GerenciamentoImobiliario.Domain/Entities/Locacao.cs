@@ -31,12 +31,14 @@ namespace GerenciamentoImobiliario.Domain.Entities
 
         private void ValidateInformation()
         {
+            if (this.Imovel is null || this.Inquilino is null || this.Corretor is null || this.AlugadoAte == DateTime.MinValue)
+                throw new EntityException("Valide as Informacoes das entidades fornecidas");
+
             if (this.Imovel.IsDisponivel == false)
                 throw new EntityException("Imovel informado esta ocupado");
 
             if (this.AlugadoAte <= DateTime.Now || this.AlugadoAte > DateTime.Now + TimeSpan.FromDays(30))
                 throw new EntityException("Data de locacao esta invalida");
-
         }
 
     }
