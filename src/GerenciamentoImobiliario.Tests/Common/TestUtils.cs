@@ -1,5 +1,7 @@
 using System;
 using AutoFixture;
+using AutoMapper;
+using GerenciamentoImobiliario.Application.AutoMapperConfig;
 using GerenciamentoImobiliario.Data.Infra.DataContext;
 using GerenciamentoImobiliario.Domain.Entities;
 using GerenciamentoImobiliario.Tests.Common.Fixtures;
@@ -39,6 +41,25 @@ namespace GerenciamentoImobiliario.Tests.Common
                 .UseInMemoryDatabase(databaseName: DateTime.Now.Ticks.ToString()).Options;
             var context = new GerenciamentoImobiliarioDataContext(opt);
             return context;
+        }
+        public IMapper CreateMockMapper()
+        {
+            var mapper = new MapperConfiguration(config =>
+                config.AddProfile(typeof(AutoMapperConfiguration))
+            ).CreateMapper();
+            return mapper;
+        }
+
+        public Locacao CreateValidLocacao()
+        {
+            var locacao = new Locacao(){
+                Imovel = CreateValidImovel(),
+                Corretor = CreateValidCorretor(),
+                Inquilino = CreateValidInquilino(),
+                AlugadoAte = DateTime.Now + TimeSpan.FromDays(5),
+                StatusLocacao = Enums.StatusLocacao.EmAndamento,
+            };
+            return locacao;
         }
     }
 

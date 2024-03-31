@@ -5,5 +5,6 @@ namespace GerenciamentoImobiliario.Domain.Entities
     {
         public List<Imovel> Imoveis { get; set; } = new List<Imovel>();
         public string CPF { get; set; } = string.Empty;
+        public string Nome {get;set;}
     }
 }

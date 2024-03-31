@@ -5,7 +5,6 @@ namespace GerenciamentoImobiliario.Application.Services.Validations
 {
     public static class BaseEntityValidation
     {
-
         public static void ValidadeBase(this BaseRequest baseRequest)
         {
             if (baseRequest.Nome == string.Empty || baseRequest.Nome == null)
