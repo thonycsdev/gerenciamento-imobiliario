@@ -13,14 +13,13 @@ using Xunit;
 
 namespace GerenciamentoImobiliario.Tests.Application.Services
 {
-    [Collection(nameof(BaseFixtureCollection))]
     public class InquilinoServiceTests
     {
         private readonly TestUtils _utils;
         private readonly Mock<IInquilinoRepository> _repository;
-        public InquilinoServiceTests(TestUtils utils)
+        public InquilinoServiceTests()
         {
-            _utils = utils;
+            _utils = new TestUtils();
             _repository = new Mock<IInquilinoRepository>();
         }
         [Fact]
@@ -30,7 +29,9 @@ namespace GerenciamentoImobiliario.Tests.Application.Services
             _repository.Setup(x => x.Create(It.IsAny<Inquilino>())).Callback<Inquilino>(x => list.Add(x));
             var service = new InquilinoService(_repository.Object);
             var entity = _utils.CreateValidInquilino();
-            var input = new InquilinoRequest(entity.Nome, entity.CPF);
+            var input = new InquilinoRequest();
+            input.Nome = entity.Nome;
+            input.CPF = entity.CPF;
 
 
             await service.Create(input);
@@ -90,7 +91,9 @@ namespace GerenciamentoImobiliario.Tests.Application.Services
             _repository.Setup(x => x.GetById(It.IsAny<Guid>())).ReturnsAsync(list.First(x => x.Id == inquilinoAdded.Id));
             var service = new InquilinoService(_repository.Object);
             var inquilino = await service.GetById(inquilinoAdded.Id);
-            var inputRequest = new InquilinoRequest(inquilinoUpdated.Nome, inquilinoUpdated.CPF);
+            var inputRequest = new InquilinoRequest();
+            inputRequest.Nome = inquilinoAdded.Nome;
+            inputRequest.CPF = inquilinoAdded.CPF;
             var result = await service.Update(inputRequest, inquilino.Id);
 
             result.Should().NotBeNull();

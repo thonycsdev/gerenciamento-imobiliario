@@ -10,8 +10,17 @@ namespace GerenciamentoImobiliario.Data.Infra.DataContext
         public DbSet<Locacao> Locacoes { get; set; }
         public DbSet<Corretor> Corretores { get; set; }
         public DbSet<Inquilino> Inquilinos { get; set; }
-        public GerenciamentoImobiliarioDataContext(DbContextOptions options) : base(options)
+        public GerenciamentoImobiliarioDataContext(DbContextOptions<GerenciamentoImobiliarioDataContext> options) : base(options)
         {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                //    optionsBuilder.UseSqlServer("connectionstring");
+                optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=local_database;User Id=postgres;Password=local_password;");
+            }
         }
     }
 }

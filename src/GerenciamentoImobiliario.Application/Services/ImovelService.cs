@@ -4,17 +4,17 @@ using GerenciamentoImobiliario.Application.ServicesInterfaces;
 using GerenciamentoImobiliario.Data.Infra.Interfaces;
 namespace GerenciamentoImobiliario.Application.Services
 {
-    public class InquilinoService : IInquilinoService
+    public class ImovelService : IImovelService 
     {
-        private readonly IInquilinoRepository _repository;
-        public InquilinoService(IInquilinoRepository repository)
+        private readonly IImovelRepository _repository;
+        public ImovelService(IImovelRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task Create(InquilinoRequest request)
+        public async Task Create(ImovelRequest request)
         {
-            var entity = InquilinoRequest.ToDomainEntity(request);
+            var entity = ImovelRequest.ToDomainEntity(request);
             await _repository.Create(entity);
         }
 
@@ -23,29 +23,29 @@ namespace GerenciamentoImobiliario.Application.Services
             await _repository.Delete(id);
         }
 
-        public async Task<IEnumerable<InquilinoResponse>> GellAll()
+        public async Task<IEnumerable<ImovelResponse>> GellAll()
         {
             var result = await _repository.GellAll();
-            return result.Select(x => InquilinoResponse.ToInquilinoResponse(x));
+            return result.Select(x => ImovelResponse.ToImovelResponse(x));
         }
 
-        public async Task<InquilinoResponse> GetById(Guid id)
+        public async Task<ImovelResponse> GetById(Guid id)
         {
             var result = await _repository.GetById(id);
-            return InquilinoResponse.ToInquilinoResponse(result);
+            return ImovelResponse.ToImovelResponse(result);
         }
 
-        public async Task<InquilinoResponse> Update(InquilinoRequest request, Guid id)
+        public async Task<ImovelResponse> Update(ImovelRequest request, Guid id)
         {
-            var updateData = InquilinoRequest.ToDomainEntity(request);
+            var updateData = ImovelRequest.ToDomainEntity(request);
             var entity = await _repository.GetById(id);
             entity.Nome = updateData.Nome;
-            entity.ImovelAlugado = updateData.ImovelAlugado;
             entity.CriadoEm = updateData.CriadoEm;
-            entity.CPF = updateData.CPF;
+            entity.Proprietario = updateData.Proprietario;
+            entity.IsDisponivel = updateData.IsDisponivel;
             entity.AtualizadoEm = DateTime.Now;
             await _repository.Update(entity);
-            return InquilinoResponse.ToInquilinoResponse(entity);
+            return ImovelResponse.ToImovelResponse(entity);
         }
     }
 }

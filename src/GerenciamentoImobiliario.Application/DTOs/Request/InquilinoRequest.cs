@@ -1,22 +1,29 @@
+using GerenciamentoImobiliario.Application.Services.Validations;
 using GerenciamentoImobiliario.Domain.Entities;
 
 namespace GerenciamentoImobiliario.Application.DTOs.Request
 {
-    public class InquilinoRequest
+    public class InquilinoRequest : BaseRequest
     {
         public string CPF { get; set; }
-        public string Nome { get; set; }
+        public Imovel? ImovelAlugado { get; set; }
+        public DateTime CriadoEm { get; set; }
+        public DateTime AtualizadoEm { get; set; }
 
-        public InquilinoRequest(string nome, string cpf)
-        {
-           this.CPF = cpf;
-           this.Nome = nome;
-        }
         public static Inquilino ToDomainEntity(InquilinoRequest r)
         {
-            var entity = new Inquilino(r.Nome, r.CPF);
-            return entity;
+            r.Validate();
+            return new Inquilino
+            {
+                Nome = r.Nome,
+                AtualizadoEm = r.AtualizadoEm,
+                CPF = r.CPF,
+                CriadoEm = r.CriadoEm,
+                ImovelAlugado = r.ImovelAlugado
+
+            };
         }
+
     }
 
 

@@ -1,47 +1,46 @@
+using System;
 using AutoFixture;
-using Bogus;
+using GerenciamentoImobiliario.Data.Infra.DataContext;
 using GerenciamentoImobiliario.Domain.Entities;
-using Xunit;
+using GerenciamentoImobiliario.Tests.Common.Fixtures;
+using Microsoft.EntityFrameworkCore;
 
 namespace GerenciamentoImobiliario.Tests.Common
 {
-    public class TestUtils
+
+    public class TestUtils : FixturesDomain
     {
-        private readonly Fixture _fixture;
-        public readonly Faker _faker;
-        public TestUtils()
-        {
-            _fixture = new Fixture();
-            _faker = new Faker("pt_BR");
-        }
+        public TestUtils() { }
         public Corretor CreateValidCorretor()
         {
-            var corretor = new Corretor(_faker.Person.FullName);
+            var corretor = _fixture.Create<Corretor>();
             return corretor;
         }
 
         public Inquilino CreateValidInquilino()
         {
-            var inquilino = new Inquilino(_faker.Person.FullName, _faker.Person.Random.String());
+            var inquilino = _fixture.Create<Inquilino>();
             return inquilino;
         }
         public Proprietario CreateValidProprietario()
         {
-            var prop = new Proprietario(_faker.Person.FullName, _faker.Person.Random.String());
+            var prop = _fixture.Create<Proprietario>();
             return prop;
         }
         public Imovel CreateValidImovel()
         {
-            var imo = new Imovel(_faker.Company.CompanyName(), CreateValidProprietario());
+            var imo = _fixture.Create<Imovel>();
             return imo;
         }
-        public void CreateValidLocation()
-        {
 
+        public GerenciamentoImobiliarioDataContext CreateEFCoreInMemoryContextDatabase()
+        {
+            var opt = new DbContextOptionsBuilder<GerenciamentoImobiliarioDataContext>()
+                .UseInMemoryDatabase(databaseName: DateTime.Now.Ticks.ToString()).Options;
+            var context = new GerenciamentoImobiliarioDataContext(opt);
+            return context;
         }
     }
 
 
-    [CollectionDefinition(nameof(BaseFixtureCollection))]
-    public class BaseFixtureCollection : ICollectionFixture<TestUtils> { }
 }

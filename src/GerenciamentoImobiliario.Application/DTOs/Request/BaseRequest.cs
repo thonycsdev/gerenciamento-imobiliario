@@ -1,12 +1,9 @@
-namespace GerenciamentoImobiliario.Domain.Entities
+namespace GerenciamentoImobiliario.Application.DTOs.Request
 {
-    public class BaseEntity
+    public class BaseRequest
     {
-        public Guid Id { get; set; }
         public string Nome { get; set; } = string.Empty;
         public DateTime CriadoEm { get; set; }
         public DateTime AtualizadoEm { get; set; }
-
     }
-
 }
