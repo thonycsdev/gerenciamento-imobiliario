@@ -7,36 +7,36 @@ namespace GerenciamentoImobiliario.API.Controllers.inquilino
 {
     [ApiController]
     [Route("[controller]")]
-    public class InquilinoController : ControllerBase
+    public class ImovelController : ControllerBase
     {
-        private readonly IInquilinoService _service;
-        public InquilinoController(IInquilinoService service)
+        private readonly IImovelService _service;
+        public ImovelController(IImovelService service)
         {
             _service = service;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<InquilinoResponse>> GetAllInquilinosAsync(){
+        public async Task<IEnumerable<ImovelResponse>> GetAllImovelsAsync(){
             var r = await _service.GellAll();
             return r;
         }
         [HttpGet("{id}")]
-        public async Task<InquilinoResponse> GetById(Guid id){
+        public async Task<ImovelResponse> GetById(Guid id){
             var r = await _service.GetById(id);
             return r;
         }
         [HttpPost]
-        public async Task<int> Create(InquilinoRequest request){
+        public async Task<int> Create(ImovelRequest request){
             await _service.Create(request);
             return StatusCodes.Status200OK; 
         }
         [HttpPut("{id}")]
-        public async Task<InquilinoResponse> GetAllInquilinosAsync(InquilinoRequest request, Guid id){
+        public async Task<ImovelResponse> GetAllImovelsAsync(ImovelRequest request, Guid id){
             var r = await _service.Update(request, id);
             return r;
         }
         [HttpDelete("{id}")]
-        public async Task<int> GetAllInquilinosAsync(Guid id){
+        public async Task<int> GetAllImovelsAsync(Guid id){
             await _service.Delete(id);
             return StatusCodes.Status200OK;
         }

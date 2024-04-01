@@ -1,4 +1,5 @@
 using GerenciamentoImobiliario.API.Extensions;
+using GerenciamentoImobiliario.Application.AutoMapperConfig;
 using GerenciamentoImobiliario.Data.Infra.DataContext;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureServices();
 builder.Services.ConfigureRepositories();
+builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration));
 builder.Services.AddDbContext<GerenciamentoImobiliarioDataContext>();
 var app = builder.Build();
 
